@@ -46,6 +46,52 @@ def checkVal(d, P, S):
     return False
 
 
+def on_key_press(event):
+    if event.keysym == 'Return':
+        btn_solve.invoke()
+    if event.keysym == 'Delete':
+        btn_clr.invoke()
+    if event.keysym == 'Escape':
+        return root.destroy()
+    btn_solve.config(state='disabled')
+    btn_clr.config(state='disabled')
+    if root.focus_get()["state"] != 'disabled':
+        if event.keysym == 'Left':
+            root.focus_get().event_generate('<<PrevWindow>>')
+        elif event.keysym == 'Right':
+            root.focus_get().event_generate('<<NextWindow>>')
+        elif event.keysym == 'Up':
+            f_i = root.focus_get().grid_info()['row'] - 1
+            f_j = root.focus_get().grid_info()['column']
+            if f_i == 4 or f_i == 8:
+                f_i -= 1
+            if f_i == 0:
+                f_i = 11
+            while root.grid_slaves(f_i, f_j)[0]["state"] != 'normal':
+                f_i -= 1
+                if f_i == 4 or f_i == 8:
+                    f_i -= 1
+                if f_i == 0:
+                    f_i = 11
+            root.grid_slaves(f_i, f_j)[0].focus_set()
+        elif event.keysym == 'Down':
+            f_i = root.focus_get().grid_info()['row'] + 1
+            f_j = root.focus_get().grid_info()['column']
+            if f_i == 4 or f_i == 8:
+                f_i += 1
+            if f_i == 12:
+                f_i = 1
+            while root.grid_slaves(f_i, f_j)[0]["state"] != 'normal':
+                f_i += 1
+                if f_i == 4 or f_i == 8:
+                    f_i += 1
+                if f_i == 12:
+                    f_i = 1
+            root.grid_slaves(f_i, f_j)[0].focus_set()
+    btn_solve.config(state='normal')
+    btn_clr.config(state='normal')
+
+
 bg_colour = '#FFF2A3'
 act_bg_colour = '#B09EDB'
 btn_colour = '#E4D8FF'
@@ -55,6 +101,7 @@ act_btn_fg_colour = '#fff'
 root = Tk()
 root.title("Sudoku Solver")
 root['background'] = bg_colour
+root.bind('<KeyPress>', on_key_press)
 # создаём файл картинки для шапки приложения
 try:
     open("Icon.png")
@@ -69,6 +116,7 @@ try:
     os.remove("Icon.png")
 except IOError:
     pass
+
 
 cells = [[0 for _ in range(9)] for _ in range(9)]
 result_string_sheet = [['' for _ in range(9)] for _ in range(9)]
@@ -97,26 +145,27 @@ for i in range(9):
         Label(font="Arial 1", background=bg_colour).grid(row=i_new, column=0)
     i_new += 1
 Label(font="Arial 1", background=bg_colour).grid(row=i_new, column=0)
+cells[0][0].focus_set()
 
-btn = Button(root, text="Solve", command=clicked_solve)
-btn['background'] = btn_colour
-btn['activebackground'] = act_bg_colour
-btn['fg'] = btn_fg_colour
-btn['activeforeground'] = act_btn_fg_colour
-btn['bd'] = '1'
-btn['relief'] = 'ridge'
+btn_solve = Button(root, text="Solve", command=clicked_solve)
+btn_solve['background'] = btn_colour
+btn_solve['activebackground'] = act_bg_colour
+btn_solve['fg'] = btn_fg_colour
+btn_solve['activeforeground'] = act_btn_fg_colour
+btn_solve['bd'] = '1'
+btn_solve['relief'] = 'ridge'
 # flat, groove, raised, ridge, solid, or sunken
-btn['font'] = 'Bahnschrift 15'
-btn.grid(column=1, row=0)
+btn_solve['font'] = 'Bahnschrift 15'
+btn_solve.grid(column=1, row=0)
 
-btn = Button(root, text="Clear", command=clicked_clear)
-btn['background'] = btn_colour
-btn['activebackground'] = act_bg_colour
-btn['fg'] = btn_fg_colour
-btn['activeforeground'] = act_btn_fg_colour
-btn['bd'] = '1'
-btn['relief'] = 'ridge'
-btn['font'] = 'Bahnschrift 15'
-btn.grid(column=2, row=0)
+btn_clr = Button(root, text="Clear", command=clicked_clear)
+btn_clr['background'] = btn_colour
+btn_clr['activebackground'] = act_bg_colour
+btn_clr['fg'] = btn_fg_colour
+btn_clr['activeforeground'] = act_btn_fg_colour
+btn_clr['bd'] = '1'
+btn_clr['relief'] = 'ridge'
+btn_clr['font'] = 'Bahnschrift 15'
+btn_clr.grid(column=2, row=0)
 
 mainloop()
