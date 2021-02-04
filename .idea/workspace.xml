@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4336eedc-0378-41ee-b789-17c55524d682" name="Default Changelist" comment="Adding keyboard navigation:&#10;- arrows, return (enter), del, esc" />
+    <list default="true" id="4336eedc-0378-41ee-b789-17c55524d682" name="Default Changelist" comment="Adding keyboard navigation:&#10;- arrows, return (enter), del, esc">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -185,7 +187,7 @@
       <workItem from="1612378873550" duration="91000" />
       <workItem from="1612379095596" duration="33000" />
       <workItem from="1612379339927" duration="77000" />
-      <workItem from="1612443890964" duration="7563000" />
+      <workItem from="1612443890964" duration="7817000" />
     </task>
     <task id="LOCAL-00001" summary="Adding keyboard navigation:&#10;- arrows, return (enter), del, esc">
       <created>1612451404387</created>
@@ -194,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612451404387</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Adding keyboard navigation:&#10;- arrows, return (enter), del, esc">
+      <created>1612451837502</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1612451837502</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

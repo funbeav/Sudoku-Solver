@@ -74,6 +74,7 @@ def on_key_press(event):
                 if f_i == 0:
                     f_i = 11
             root.grid_slaves(f_i, f_j)[0].focus_set()
+            root.grid_slaves(f_i, f_j)[0].selection_range(0, 1)
         elif event.keysym == 'Down':
             f_i = root.focus_get().grid_info()['row'] + 1
             f_j = root.focus_get().grid_info()['column']
@@ -88,6 +89,7 @@ def on_key_press(event):
                 if f_i == 12:
                     f_i = 1
             root.grid_slaves(f_i, f_j)[0].focus_set()
+            root.grid_slaves(f_i, f_j)[0].selection_range(0, 1)
     btn_solve.config(state='normal')
     btn_clr.config(state='normal')
 
